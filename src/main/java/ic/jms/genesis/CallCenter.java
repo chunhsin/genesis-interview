@@ -1,5 +1,9 @@
 package ic.jms.genesis;
 
+import ic.jms.genesis.employees.Fresher;
+import ic.jms.genesis.employees.ProductManager;
+import ic.jms.genesis.employees.TechnicalLeader;
+
 import java.util.List;
 
 /*
@@ -7,11 +11,11 @@ import java.util.List;
  */
 public class CallCenter {
 
-    private int maxEmployee = 10;
+    private static final int maxEmployee = 10;
     private List<Employee> employeeList;
 
     public CallCenter() {
-
+        this.addEmployee();
     }
 
     public void receiveACall() {
@@ -20,11 +24,14 @@ public class CallCenter {
 
     private void addEmployee() {
         if (Math.random() > 0.5) {
-
+            employeeList.add(new TechnicalLeader());
+        }
+        else {
+            employeeList.add(new ProductManager());
         }
 
-        for (int i = 0; i < maxEmployee; i++) {
-
+        for (int i = 0; i < maxEmployee - 1; i++) {
+            employeeList.add(new Fresher());
         }
     }
 }

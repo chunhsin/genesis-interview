@@ -13,7 +13,17 @@ public class ProductManager implements Employee {
     }
 
     @Override
+    public void finishCall() {
+
+    }
+
+    @Override
     public boolean isFree() {
+        return false;
+    }
+
+    @Override
+    public boolean isFresher() {
         return false;
     }
 }

@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 public class CallCenterTest {
     @Test
-    public void testSomeLibraryMethod() {
+    public void testCallCenter_ReceiveACall() {
         CallCenter callCenter = new CallCenter();
         callCenter.receiveACall();
     }
