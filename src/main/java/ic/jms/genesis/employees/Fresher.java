@@ -14,19 +14,14 @@ public class Fresher extends BasicEmployee {
     public boolean canHandleCall() {
         System.out.println("Hi, i'm refresher " + employeeNumber);
         isFree = false;
-        boolean canResolveQuestion = Math.random() > 0.1;
+        boolean canResolveQuestion = Math.random() > 0.9999;
         if (!canResolveQuestion) {
             System.out.println("sorry, i need escalate the call to technical lead");
         }
         else {
-            System.out.println("Problem resovled, thank you");
+            System.out.println("Problem solved, thank you");
         }
         return canResolveQuestion;
-    }
-
-    @Override
-    public boolean isFree() {
-        return isFree;
     }
 
     @Override

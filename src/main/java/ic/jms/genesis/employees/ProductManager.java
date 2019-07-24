@@ -15,9 +15,4 @@ public class ProductManager extends BasicEmployee {
         return true;
     }
 
-    @Override
-    public void finishCall() {
-
-    }
-
 }

@@ -24,7 +24,15 @@ public class CallProcess implements Runnable {
             fresher.finishCall();
         }
         else{
+            while (!pmOrtl.isFree()){
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             pmOrtl.canHandleCall();
+            pmOrtl.finishCall();
         }
 
     }

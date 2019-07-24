@@ -9,9 +9,9 @@ import ic.jms.genesis.Employee;
 public class BasicEmployee implements Employee {
 
     boolean isFree = true;
-    int  employeeNumber;
+    int employeeNumber;
 
-    BasicEmployee(int employeeNumber){
+    BasicEmployee(int employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
 
@@ -26,7 +26,7 @@ public class BasicEmployee implements Employee {
     }
 
     @Override
-    public boolean isFree() {
+    public synchronized boolean isFree() {
         return isFree;
     }
 
