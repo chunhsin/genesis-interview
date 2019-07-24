@@ -8,5 +8,4 @@ public interface Employee {
     boolean canHandleCall();
     void finishCall();
     boolean isFree();
-    boolean isFresher();
 }

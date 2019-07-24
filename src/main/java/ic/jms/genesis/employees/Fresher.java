@@ -24,8 +24,4 @@ public class Fresher extends BasicEmployee {
         return canResolveQuestion;
     }
 
-    @Override
-    public boolean isFresher() {
-        return true;
-    }
 }

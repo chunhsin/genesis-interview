@@ -4,9 +4,8 @@ import ic.jms.genesis.employees.Fresher;
 import ic.jms.genesis.employees.ProductManager;
 import ic.jms.genesis.employees.TechnicalLeader;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,8 +15,8 @@ import java.util.concurrent.Executors;
 public class CallCenter {
 
     private static final int maxFreshers = 10;
-    private List<Fresher> fresherList = new ArrayList<>();
-    private Employee specialEmployee;
+    private ConcurrentLinkedQueue<Fresher> fresherList = new ConcurrentLinkedQueue<>();
+    Employee specialEmployee = Math.random() > 0.5 ? new TechnicalLeader(maxFreshers) : new ProductManager(maxFreshers);
     private ExecutorService executor;
 
     public CallCenter() {
@@ -34,13 +33,13 @@ public class CallCenter {
     }
 
     private Optional<Fresher> getFreeFresher() {
-        return fresherList.stream()
-                          .filter(Fresher::isFree)
-                          .findFirst();
+        if (fresherList.size() > 0) {
+            return Optional.of(fresherList.remove());
+        }
+        return Optional.empty();
     }
 
     private void initEmployee() {
-        specialEmployee = Math.random() > 0.5 ? new TechnicalLeader(maxFreshers) : new ProductManager(maxFreshers);
         for (int i = 0; i < maxFreshers; i++) {
             fresherList.add(new Fresher(i));
         }

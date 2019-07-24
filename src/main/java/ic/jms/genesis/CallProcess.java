@@ -9,12 +9,12 @@ import ic.jms.genesis.employees.Fresher;
 public class CallProcess implements Runnable {
 
     private Fresher fresher;
-    private Employee pmOrtl;
+    private Employee pmOrTl;
 
     CallProcess(Fresher fresher,
-                Employee pmOrtl) {
+                Employee pmOrTl) {
         this.fresher = fresher;
-        this.pmOrtl = pmOrtl;
+        this.pmOrTl = pmOrTl;
     }
 
     @Override
@@ -24,15 +24,16 @@ public class CallProcess implements Runnable {
             fresher.finishCall();
         }
         else{
-            while (!pmOrtl.isFree()){
+            System.out.println( "pm or tl is free : "+pmOrTl.isFree() );
+            while (!pmOrTl.isFree()){
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            pmOrtl.canHandleCall();
-            pmOrtl.finishCall();
+            pmOrTl.canHandleCall();
+            pmOrTl.finishCall();
         }
 
     }
