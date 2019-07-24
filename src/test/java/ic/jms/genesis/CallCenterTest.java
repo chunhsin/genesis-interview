@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class CallCenterTest {
     @Test
     public void testSomeLibraryMethod() {
-        CallCenter classUnderTest = new CallCenter();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+        CallCenter callCenter = new CallCenter();
+        callCenter.receiveACall();
     }
 }
