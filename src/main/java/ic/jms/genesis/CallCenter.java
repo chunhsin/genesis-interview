@@ -4,6 +4,7 @@ import ic.jms.genesis.employees.Fresher;
 import ic.jms.genesis.employees.ProductManager;
 import ic.jms.genesis.employees.TechnicalLeader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,27 +12,28 @@ import java.util.List;
  */
 public class CallCenter {
 
-    private static final int maxEmployee = 10;
-    private List<Employee> employeeList;
+    private static final int maxFreshers = 10;
+    private List<Employee> fresherList = new ArrayList<>();
+    private Employee specialEmployee;
 
     public CallCenter() {
-        this.addEmployee();
+        this.initEmployee();
     }
 
     public void receiveACall() {
-
+        for (Employee employee : fresherList) {
+            if (employee.isFree()) {
+                if(!employee.canHandleCall()){
+                    specialEmployee.canHandleCall();
+                }
+            }
+        }
     }
 
-    private void addEmployee() {
-        if (Math.random() > 0.5) {
-            employeeList.add(new TechnicalLeader());
-        }
-        else {
-            employeeList.add(new ProductManager());
-        }
-
-        for (int i = 0; i < maxEmployee - 1; i++) {
-            employeeList.add(new Fresher());
+    private void initEmployee() {
+        specialEmployee = Math.random()>0.5 ? new TechnicalLeader() : new ProductManager();
+        for (int i = 0; i < maxFreshers; i++) {
+            fresherList.add(new Fresher());
         }
     }
 }

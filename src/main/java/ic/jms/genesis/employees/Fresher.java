@@ -1,26 +1,18 @@
 package ic.jms.genesis.employees;
 
-import ic.jms.genesis.Employee;
-
 /**
  * @author jamesliao
  * @since 2019-07-24
  */
-public class Fresher implements Employee {
-    @Override
-    public void answerCall() {
-
-    }
+public class Fresher extends BasicEmployee {
 
     @Override
-    public void finishCall() {
-
+    public boolean canHandleCall() {
+        isFree = false;
+        boolean canResolveQuestion = Math.random() > 0.5;
+        return canResolveQuestion;
     }
 
-    @Override
-    public boolean isFree() {
-        return true;
-    }
 
     @Override
     public boolean isFresher() {

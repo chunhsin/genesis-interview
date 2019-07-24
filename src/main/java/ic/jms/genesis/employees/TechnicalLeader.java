@@ -6,24 +6,10 @@ import ic.jms.genesis.Employee;
  * @author jamesliao
  * @since 2019-07-24
  */
-public class TechnicalLeader implements Employee {
+public class TechnicalLeader extends BasicEmployee {
     @Override
-    public void answerCall() {
-
+    public boolean canHandleCall() {
+        return true;
     }
 
-    @Override
-    public void finishCall() {
-
-    }
-
-    @Override
-    public boolean isFree() {
-        return false;
-    }
-
-    @Override
-    public boolean isFresher() {
-        return false;
-    }
 }

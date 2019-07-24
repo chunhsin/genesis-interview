@@ -6,10 +6,10 @@ import ic.jms.genesis.Employee;
  * @author jamesliao
  * @since 2019-07-24
  */
-public class ProductManager implements Employee {
+public class ProductManager extends BasicEmployee {
     @Override
-    public void answerCall() {
-
+    public boolean canHandleCall() {
+        return true;
     }
 
     @Override
@@ -17,13 +17,4 @@ public class ProductManager implements Employee {
 
     }
 
-    @Override
-    public boolean isFree() {
-        return false;
-    }
-
-    @Override
-    public boolean isFresher() {
-        return false;
-    }
 }

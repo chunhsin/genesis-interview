@@ -5,7 +5,7 @@ package ic.jms.genesis;
  * @since 2019-07-24
  */
 public interface Employee {
-    void answerCall();
+    boolean canHandleCall();
     void finishCall();
     boolean isFree();
     boolean isFresher();
