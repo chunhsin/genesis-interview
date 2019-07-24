@@ -25,7 +25,13 @@ public class CallCenter {
             if (employee.isFree()) {
                 if(!employee.canHandleCall()){
                     specialEmployee.canHandleCall();
+                    break;
                 }
+                else{
+                    employee.finishCall();
+                    break;
+                }
+
             }
         }
     }

@@ -9,6 +9,7 @@ import ic.jms.genesis.Employee;
 public class ProductManager extends BasicEmployee {
     @Override
     public boolean canHandleCall() {
+        System.out.println("i'm, product manager");
         return true;
     }
 

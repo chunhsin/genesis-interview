@@ -9,6 +9,7 @@ import ic.jms.genesis.Employee;
 public class TechnicalLeader extends BasicEmployee {
     @Override
     public boolean canHandleCall() {
+        System.out.println("Hi, i'm tech leader");
         return true;
     }
 
