@@ -21,11 +21,14 @@ public class CallCenterTest {
 
     @Before
     public void beforeTest(){
-        specialEmployee = new TechnicalLeader();
+        specialEmployee = new TechnicalLeader(10);
     }
 
     @Test
     public void testCallCenter_ReceiveACall() {
-        callCenter.receiveACall();
+        for(int i=0 ;i < 100 ;i++){
+            callCenter.receiveACall();
+        }
+
     }
 }

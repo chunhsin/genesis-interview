@@ -8,7 +8,12 @@ import ic.jms.genesis.Employee;
  */
 public class BasicEmployee implements Employee {
 
-    protected boolean isFree = true;
+    boolean isFree = true;
+    int  employeeNumber;
+
+    BasicEmployee(int employeeNumber){
+        this.employeeNumber = employeeNumber;
+    }
 
     @Override
     public boolean canHandleCall() {
