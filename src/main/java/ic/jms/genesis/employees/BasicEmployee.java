@@ -16,13 +16,13 @@ public abstract class BasicEmployee implements Employee {
     }
 
     @Override
-    public void finishCall() {
+    public synchronized void finishCall() {
         this.isFree = true;
     }
 
     @Override
     public synchronized boolean isFree() {
-        return isFree;
+        return this.isFree;
     }
 
 }

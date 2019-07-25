@@ -1,6 +1,8 @@
 package ic.jms.genesis;
 
 import ic.jms.genesis.employees.Fresher;
+import ic.jms.genesis.employees.ProductManager;
+import ic.jms.genesis.employees.TechnicalLeader;
 
 /**
  * @author jamesliao
@@ -9,31 +11,49 @@ import ic.jms.genesis.employees.Fresher;
 public class CallProcess implements Runnable {
 
     private Fresher fresher;
-    private Employee pmOrTl;
+    private TechnicalLeader technicalLeader;
+    private ProductManager productManager;
 
     CallProcess(Fresher fresher,
-                Employee pmOrTl) {
+                TechnicalLeader technicalLeader,
+                ProductManager productManager) {
         this.fresher = fresher;
-        this.pmOrTl = pmOrTl;
+        this.technicalLeader = technicalLeader;
+        this.productManager = productManager;
     }
 
     @Override
     public void run() {
-        System.out.println("receive a call");
-        if(fresher.canHandleCall()){
+        System.out.println("receive a call ");
+        if (fresher.canHandleCall()) {
             fresher.finishCall();
         }
-        else{
-            System.out.println( "pm or tl is free : "+pmOrTl.isFree() );
-            while (!pmOrTl.isFree()){
+        else {
+            fresher.finishCall();
+            System.out.println("tech leader is free : "+technicalLeader.isFree());
+            while (!technicalLeader.isFree()) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            pmOrTl.canHandleCall();
-            pmOrTl.finishCall();
+            if (technicalLeader.canHandleCall()) {
+                technicalLeader.finishCall();
+            }
+            else {
+                technicalLeader.finishCall();
+                while (!productManager.isFree()){
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                productManager.canHandleCall();
+                productManager.finishCall();
+            }
+
         }
 
     }
