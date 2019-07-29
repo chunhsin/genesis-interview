@@ -5,8 +5,8 @@ package ic.jms.genesis.employees;
  * @since 2019-07-24
  */
 public class Fresher extends BasicEmployee {
-
-    int freshCanHandleDifficulty = 50;
+    private int resolveTime = 300;
+    private int freshCanHandleDifficulty = 50;
 
     public Fresher(int employeeNumber) {
         super(employeeNumber);
@@ -20,7 +20,12 @@ public class Fresher extends BasicEmployee {
             System.out.println("sorry, i need escalate the call to technical lead");
         }
         else {
-            System.out.println("Problem solved, thank you");
+            try {
+                Thread.sleep(resolveTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Happy to solve the your problem, Thank you.");
         }
         return canResolveQuestion;
     }

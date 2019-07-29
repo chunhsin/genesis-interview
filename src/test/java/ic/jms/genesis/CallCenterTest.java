@@ -9,16 +9,12 @@ import java.util.concurrent.TimeUnit;
 
 public class CallCenterTest {
 
-    private CallCenter callCenter = new CallCenter();
+    private CallCenter callCenter = CallCenter.getInstance();
 
     @Test
     public void testCallCenter_ReceiveACall() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
-        for (int i = 0; i < 100; i++) {
-            callCenter.receiveACall();
-        }
-        System.out.println("Receive Call : " + callCenter.getReceiveCallCount());
-        latch.await(10, TimeUnit.SECONDS);
-
+        callCenter.receiveACall();
+        latch.await(1000, TimeUnit.MILLISECONDS);
     }
 }

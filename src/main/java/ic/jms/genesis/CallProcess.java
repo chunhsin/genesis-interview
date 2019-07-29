@@ -15,12 +15,11 @@ public class CallProcess implements Runnable {
     private TechnicalLeader technicalLeader;
     private ProductManager productManager;
 
-    CallProcess(Fresher fresher,
-                TechnicalLeader technicalLeader,
-                ProductManager productManager) {
+    CallProcess(Fresher fresher) {
         this.fresher = fresher;
-        this.technicalLeader = technicalLeader;
-        this.productManager = productManager;
+        CallCenter callCenter = CallCenter.getInstance();
+        this.technicalLeader = callCenter.getTechnicalLeader();
+        this.productManager = callCenter.getProductManager();
     }
 
     @Override

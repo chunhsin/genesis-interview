@@ -21,8 +21,15 @@ public class CallCenter {
     private TechnicalLeader technicalLeader;
     private ProductManager productManager = new ProductManager(maxFreshers + 2);
     private ExecutorService executor;
+    private static CallCenter callCenter;
 
-    public CallCenter() {
+    public static CallCenter getInstance(){
+        if(callCenter == null )
+            callCenter = new CallCenter();
+        return callCenter;
+    }
+
+    private CallCenter() {
         executor = Executors.newFixedThreadPool(maxFreshers);
         this.initEmployee();
     }
@@ -33,7 +40,7 @@ public class CallCenter {
             freeFresher = this.getFreeFresher();
         } while (!freeFresher.isPresent());
         receiveCallCount.addAndGet(1);
-        executor.execute(new CallProcess(freeFresher.get(), technicalLeader, productManager));
+        executor.execute(new CallProcess(freeFresher.get()));
     }
 
     public long getReceiveCallCount() {
@@ -50,10 +57,27 @@ public class CallCenter {
         return Optional.empty();
     }
 
+    public TechnicalLeader getTechnicalLeader() {
+        return technicalLeader;
+    }
+
+    public void setTechnicalLeader(TechnicalLeader technicalLeader) {
+        this.technicalLeader = technicalLeader;
+    }
+
+    public ProductManager getProductManager() {
+        return productManager;
+    }
+
+    public void setProductManager(ProductManager productManager) {
+        this.productManager = productManager;
+    }
+
     private void initEmployee() {
         for (int i = 0; i < maxFreshers; i++) {
             fresherList.add(new Fresher(i));
         }
         technicalLeader = new TechnicalLeader(maxFreshers + 1);
     }
+
 }
