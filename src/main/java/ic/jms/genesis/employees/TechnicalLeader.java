@@ -7,7 +7,7 @@ package ic.jms.genesis.employees;
 public class TechnicalLeader extends BasicEmployee {
 
     private int canHandleDifficulty = 80;
-    private int resolveTime = 600;
+    private int resolveTime = 100;
 
     public TechnicalLeader(int employeeNumber) {
         super(employeeNumber);

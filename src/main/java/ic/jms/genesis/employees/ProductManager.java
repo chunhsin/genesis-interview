@@ -5,7 +5,7 @@ package ic.jms.genesis.employees;
  * @since 2019-07-24
  */
 public class ProductManager extends BasicEmployee {
-    private int resolveTime = 1200;
+    private int resolveTime = 200;
     public ProductManager(int employeeNumber) {
         super(employeeNumber);
     }

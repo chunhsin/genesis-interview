@@ -17,4 +17,13 @@ public class CallCenterTest {
         callCenter.receiveACall();
         latch.await(1000, TimeUnit.MILLISECONDS);
     }
+
+    @Test
+    public void testCallCenter_ReceiveOneHundredCall() throws InterruptedException {
+        final CountDownLatch latch = new CountDownLatch(1);
+        for (int i = 0; i < 100; i++) {
+            callCenter.receiveACall();
+        }
+        latch.await(5000, TimeUnit.MILLISECONDS);
+    }
 }

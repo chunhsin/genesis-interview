@@ -5,7 +5,7 @@ package ic.jms.genesis.employees;
  * @since 2019-07-24
  */
 public class Fresher extends BasicEmployee {
-    private int resolveTime = 300;
+    private int resolveTime = 50;
     private int freshCanHandleDifficulty = 50;
 
     public Fresher(int employeeNumber) {
