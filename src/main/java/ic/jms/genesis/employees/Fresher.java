@@ -6,14 +6,16 @@ package ic.jms.genesis.employees;
  */
 public class Fresher extends BasicEmployee {
 
+    int freshCanHandleDifficulty = 50;
+
     public Fresher(int employeeNumber) {
         super(employeeNumber);
     }
 
     @Override
-    public boolean canHandleCall() {
+    public boolean canHandleCall(int difficulty) {
         System.out.println("Hi, i'm refresher " + employeeNumber);
-        boolean canResolveQuestion = Math.random() > 0.9999;
+        boolean canResolveQuestion = freshCanHandleDifficulty >= difficulty;
         if (!canResolveQuestion) {
             System.out.println("sorry, i need escalate the call to technical lead");
         }
@@ -22,7 +24,5 @@ public class Fresher extends BasicEmployee {
         }
         return canResolveQuestion;
     }
-
-
 
 }

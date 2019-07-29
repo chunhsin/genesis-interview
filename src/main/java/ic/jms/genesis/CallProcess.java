@@ -26,21 +26,22 @@ public class CallProcess implements Runnable {
     @Override
     public void run() {
         System.out.println("receive a call ");
+        int difficulty = (int) (Math.random() * 100);
         try {
-            fresher.receiveCall();
+            fresher.answerCall(difficulty);
         } catch (CanNotHandleCallException e) {
-            passToTechLeader();
+            passToTechLeader(difficulty);
         }
 
     }
 
-    private void passToTechLeader() {
+    private void passToTechLeader(int difficulty) {
         try {
             waitingFroTechLeaderFree();
             System.out.println("TechLeader is Handling the Call");
-            technicalLeader.receiveCall();
+            technicalLeader.answerCall(difficulty);
         } catch (CanNotHandleCallException ex) {
-            passToProductManager();
+            passToProductManager(difficulty);
         }
     }
 
@@ -54,10 +55,10 @@ public class CallProcess implements Runnable {
         }
     }
 
-    private void passToProductManager() {
+    private void passToProductManager(int difficulty) {
         try {
             waitingForProductManagerFree();
-            productManager.receiveCall();
+            productManager.answerCall(difficulty);
         } catch (CanNotHandleCallException ignore) {
         }
     }

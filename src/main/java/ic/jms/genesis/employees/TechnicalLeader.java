@@ -6,14 +6,16 @@ package ic.jms.genesis.employees;
  */
 public class TechnicalLeader extends BasicEmployee {
 
+    int canHandleDifficulty = 80;
+
     public TechnicalLeader(int employeeNumber) {
         super(employeeNumber);
         System.out.println("init technical leader is free : "+this.isFree);
     }
 
     @Override
-    public boolean canHandleCall() {
-        boolean canResolveQuestion = Math.random() > 0.5;
+    public boolean canHandleCall(int difficulty) {
+        boolean canResolveQuestion = canHandleDifficulty >= difficulty;
         if (!canResolveQuestion) {
             System.out.println("sorry, i need escalate the call to product manager");
         }

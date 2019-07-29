@@ -5,7 +5,7 @@ package ic.jms.genesis.employees;
  * @since 2019-07-24
  */
 public interface Employee {
-    void receiveCall() throws CanNotHandleCallException;
-    boolean canHandleCall();
+    void answerCall(int difficulty) throws CanNotHandleCallException;
+    boolean canHandleCall(int difficulty);
     boolean isFree();
 }

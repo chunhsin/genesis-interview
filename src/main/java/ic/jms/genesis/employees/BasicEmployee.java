@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public abstract class BasicEmployee implements Employee {
 
+    int canHandleDifficulty = 50;
     AtomicBoolean isFree = new AtomicBoolean(true);
     int employeeNumber;
 
@@ -16,9 +17,9 @@ public abstract class BasicEmployee implements Employee {
     }
 
     @Override
-    public void receiveCall() throws CanNotHandleCallException {
+    public void answerCall(int difficulty) throws CanNotHandleCallException {
         this.isFree.set(false);
-        if(!this.canHandleCall()){
+        if(!this.canHandleCall(difficulty)){
             this.isFree.set(true);
             throw new CanNotHandleCallException();
         }
