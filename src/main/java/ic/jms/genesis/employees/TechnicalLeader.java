@@ -13,7 +13,6 @@ public class TechnicalLeader extends BasicEmployee {
 
     @Override
     public boolean canHandleCall() {
-        this.isFree = false;
         boolean canResolveQuestion = Math.random() > 0.5;
         if (!canResolveQuestion) {
             System.out.println("sorry, i need escalate the call to product manager");

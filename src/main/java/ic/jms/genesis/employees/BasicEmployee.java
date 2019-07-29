@@ -1,6 +1,6 @@
 package ic.jms.genesis.employees;
 
-import ic.jms.genesis.Employee;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author jamesliao
@@ -8,7 +8,7 @@ import ic.jms.genesis.Employee;
  */
 public abstract class BasicEmployee implements Employee {
 
-    boolean isFree = true;
+    AtomicBoolean isFree = new AtomicBoolean(true);
     int employeeNumber;
 
     BasicEmployee(int employeeNumber) {
@@ -16,13 +16,18 @@ public abstract class BasicEmployee implements Employee {
     }
 
     @Override
-    public synchronized void finishCall() {
-        this.isFree = true;
+    public void receiveCall() throws CanNotHandleCallException {
+        this.isFree.set(false);
+        if(!this.canHandleCall()){
+            this.isFree.set(true);
+            throw new CanNotHandleCallException();
+        }
+        this.isFree.set(true);
     }
 
     @Override
-    public synchronized boolean isFree() {
-        return this.isFree;
+    public boolean isFree() {
+        return this.isFree.get();
     }
 
 }

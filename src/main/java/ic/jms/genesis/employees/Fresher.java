@@ -11,9 +11,8 @@ public class Fresher extends BasicEmployee {
     }
 
     @Override
-    public synchronized boolean canHandleCall() {
+    public boolean canHandleCall() {
         System.out.println("Hi, i'm refresher " + employeeNumber);
-        this.isFree = false;
         boolean canResolveQuestion = Math.random() > 0.9999;
         if (!canResolveQuestion) {
             System.out.println("sorry, i need escalate the call to technical lead");
@@ -23,5 +22,7 @@ public class Fresher extends BasicEmployee {
         }
         return canResolveQuestion;
     }
+
+
 
 }

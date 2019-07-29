@@ -10,8 +10,7 @@ public class ProductManager extends BasicEmployee {
     }
 
     @Override
-    public synchronized boolean canHandleCall() {
-        this.isFree = false;
+    public boolean canHandleCall() {
         System.out.println("i'm, product manager " + employeeNumber);
         return true;
     }
