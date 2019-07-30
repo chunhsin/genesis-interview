@@ -24,6 +24,9 @@ What we would like to see:
 1. Document your code.
 
 
-## Reference
+## Solutions
 
-https://fernandocejas.com/2014/04/08/unit-testing-asynchronous-methods-with-mockito/
+### CallCenter
+
+1. Create a single CallCenter instance with one TechnicalLeader and ProductManager.
+

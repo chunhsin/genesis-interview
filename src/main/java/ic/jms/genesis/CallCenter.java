@@ -57,20 +57,12 @@ public class CallCenter {
         return Optional.empty();
     }
 
-    public TechnicalLeader getTechnicalLeader() {
+    TechnicalLeader getTechnicalLeader() {
         return technicalLeader;
     }
 
-    public void setTechnicalLeader(TechnicalLeader technicalLeader) {
-        this.technicalLeader = technicalLeader;
-    }
-
-    public ProductManager getProductManager() {
+    ProductManager getProductManager() {
         return productManager;
-    }
-
-    public void setProductManager(ProductManager productManager) {
-        this.productManager = productManager;
     }
 
     private void initEmployee() {

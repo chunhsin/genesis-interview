@@ -8,13 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static ic.jms.genesis.Constants.FRESHER_CAN_HANDLE_DIFFICULTY;
 import static ic.jms.genesis.Constants.TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 /**
  * @author jamesliao
@@ -41,12 +39,9 @@ public class CallProcessTest {
         // when
         callProcess.handleInComingCall(FRESHER_CAN_HANDLE_DIFFICULTY);
         // then
-        Mockito.verify(fresher, times(1))
-               .answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
-        Mockito.verify(technicalLeader, times(0))
-               .answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
-        Mockito.verify(productManager, times(0))
-               .answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
+        verify(fresher, times(1)).answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
+        verify(technicalLeader, times(0)).answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
+        verify(productManager, times(0)).answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
     }
 
     @Test
@@ -57,17 +52,13 @@ public class CallProcessTest {
         doThrow(new CanNotHandleCallException()).when(fresher)
                                                 .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
 
-        Mockito.when(technicalLeader.isFree())
-               .thenReturn(true);
+        when(technicalLeader.isFree()).thenReturn(true);
         // when
         callProcess.handleInComingCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
         // then
-        Mockito.verify(fresher, times(1))
-               .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
-        Mockito.verify(technicalLeader, times(1))
-               .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
-        Mockito.verify(productManager, times(0))
-               .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+        verify(fresher, times(1)).answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+        verify(technicalLeader, times(1)).answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+        verify(productManager, times(0)).answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
     }
 
     @Test
@@ -78,19 +69,14 @@ public class CallProcessTest {
         doThrow(new CanNotHandleCallException()).when(fresher)
                                                 .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
 
-        Mockito.when(technicalLeader.isFree())
-               .thenReturn(false);
-        Mockito.when(productManager.isFree())
-               .thenReturn(true);
+        when(technicalLeader.isFree()).thenReturn(false);
+        when(productManager.isFree()).thenReturn(true);
         // when
         callProcess.handleInComingCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
         // then
-        Mockito.verify(fresher, times(1))
-               .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
-        Mockito.verify(technicalLeader, times(0))
-               .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
-        Mockito.verify(productManager, times(1))
-               .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+        verify(fresher, times(1)).answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+        verify(technicalLeader, times(0)).answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+        verify(productManager, times(1)).answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
     }
 
     @Test
@@ -103,19 +89,14 @@ public class CallProcessTest {
                                                 .answerCall(problemDifficulty);
         doThrow(new CanNotHandleCallException()).when(technicalLeader)
                                                 .answerCall(problemDifficulty);
-        Mockito.when(technicalLeader.isFree())
-               .thenReturn(true);
-        Mockito.when(productManager.isFree())
-               .thenReturn(true);
+        when(technicalLeader.isFree()).thenReturn(true);
+        when(productManager.isFree()).thenReturn(true);
         // when
         callProcess.handleInComingCall(problemDifficulty);
         // then
-        Mockito.verify(fresher, times(1))
-               .answerCall(problemDifficulty);
-        Mockito.verify(technicalLeader, times(1))
-               .answerCall(problemDifficulty);
-        Mockito.verify(productManager, times(1))
-               .answerCall(problemDifficulty);
+        verify(fresher, times(1)).answerCall(problemDifficulty);
+        verify(technicalLeader, times(1)).answerCall(problemDifficulty);
+        verify(productManager, times(1)).answerCall(problemDifficulty);
     }
 
 }

@@ -10,9 +10,7 @@ public abstract class BasicEmployee implements Employee {
 
     AtomicBoolean isFree = new AtomicBoolean(true);
     int employeeNumber;
-    BasicEmployee(){
 
-    }
     BasicEmployee(int employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
@@ -20,7 +18,7 @@ public abstract class BasicEmployee implements Employee {
     @Override
     public void answerCall(int difficulty) throws CanNotHandleCallException {
         this.isFree.set(false);
-        if(!this.canHandleCall(difficulty)){
+        if (!this.canHandleCall(difficulty)) {
             this.isFree.set(true);
             throw new CanNotHandleCallException();
         }

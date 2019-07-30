@@ -9,9 +9,6 @@ import static ic.jms.genesis.Constants.FRESHER_RESOLVE_TIME;
  */
 public class Fresher extends BasicEmployee {
 
-    Fresher(){
-        super();
-    }
 
     public Fresher(int employeeNumber) {
         super(employeeNumber);
