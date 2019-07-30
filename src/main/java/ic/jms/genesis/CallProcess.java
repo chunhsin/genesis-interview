@@ -49,7 +49,9 @@ public class CallProcess implements Runnable {
                 System.out.println("TechLeader is Handling the Call");
                 technicalLeader.answerCall(difficulty);
             }
-            throw new CanNotHandleCallException();
+            else{
+                throw new CanNotHandleCallException();
+            }
         } catch (CanNotHandleCallException ex) {
             passToProductManager(difficulty);
         }

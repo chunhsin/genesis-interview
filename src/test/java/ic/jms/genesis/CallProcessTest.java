@@ -38,8 +38,6 @@ public class CallProcessTest {
                                                                             Exception,
                                                                             CanNotHandleCallException {
         // given
-        Mockito.when(fresher.isFree())
-               .thenReturn(true);
         // when
         callProcess.handleInComingCall(FRESHER_CAN_HANDLE_DIFFICULTY);
         // then
@@ -71,10 +69,11 @@ public class CallProcessTest {
         Mockito.verify(productManager, times(0))
                .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
     }
+
     @Test
     public void test_callProcess_WHEN_techLeadIsNotFree_THEN_ProductManagerFinish() throws
-                                                                                  Exception,
-                                                                                  CanNotHandleCallException {
+                                                                                    Exception,
+                                                                                    CanNotHandleCallException {
         // given
         doThrow(new CanNotHandleCallException()).when(fresher)
                                                 .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
@@ -92,6 +91,31 @@ public class CallProcessTest {
                .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
         Mockito.verify(productManager, times(1))
                .answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY);
+    }
+
+    @Test
+    public void test_callProcess_WHEN_techLeadCantResolve_THEN_ProductManagerFinish() throws
+                                                                                      Exception,
+                                                                                      CanNotHandleCallException {
+        // given
+        int problemDifficulty = TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY + 1;
+        doThrow(new CanNotHandleCallException()).when(fresher)
+                                                .answerCall(problemDifficulty);
+        doThrow(new CanNotHandleCallException()).when(technicalLeader)
+                                                .answerCall(problemDifficulty);
+        Mockito.when(technicalLeader.isFree())
+               .thenReturn(true);
+        Mockito.when(productManager.isFree())
+               .thenReturn(true);
+        // when
+        callProcess.handleInComingCall(problemDifficulty);
+        // then
+        Mockito.verify(fresher, times(1))
+               .answerCall(problemDifficulty);
+        Mockito.verify(technicalLeader, times(1))
+               .answerCall(problemDifficulty);
+        Mockito.verify(productManager, times(1))
+               .answerCall(problemDifficulty);
     }
 
 }
