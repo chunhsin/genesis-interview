@@ -8,10 +8,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public abstract class BasicEmployee implements Employee {
 
-    int canHandleDifficulty = 50;
     AtomicBoolean isFree = new AtomicBoolean(true);
     int employeeNumber;
+    BasicEmployee(){
 
+    }
     BasicEmployee(int employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
@@ -30,5 +31,4 @@ public abstract class BasicEmployee implements Employee {
     public boolean isFree() {
         return this.isFree.get();
     }
-
 }

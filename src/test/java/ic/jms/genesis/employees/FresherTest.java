@@ -1,5 +1,6 @@
 package ic.jms.genesis.employees;
 
+import ic.jms.genesis.Constants;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class FresherTest {
         // given
         Fresher fresher = new Fresher(1);
         // when
-        fresher.answerCall(10);
+        fresher.answerCall(Constants.FRESHER_CAN_HANDLE_DIFFICULTY - 1);
         // then
         Assert.assertTrue(fresher.isFree());
     }
@@ -24,7 +25,7 @@ public class FresherTest {
         // given
         Fresher fresher = new Fresher(1);
         // when
-        fresher.answerCall(51);
+        fresher.answerCall(Constants.FRESHER_CAN_HANDLE_DIFFICULTY + 1);
     }
 
 }

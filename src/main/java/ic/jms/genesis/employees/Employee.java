@@ -8,4 +8,5 @@ public interface Employee {
     void answerCall(int difficulty) throws CanNotHandleCallException;
     boolean canHandleCall(int difficulty);
     boolean isFree();
+    void trySolveProblem();
 }

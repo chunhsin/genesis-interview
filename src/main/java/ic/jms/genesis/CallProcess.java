@@ -15,6 +15,12 @@ public class CallProcess implements Runnable {
     private TechnicalLeader technicalLeader;
     private ProductManager productManager;
 
+    CallProcess(Fresher fresher,TechnicalLeader technicalLeader,ProductManager productManager) {
+        this.fresher = fresher;
+        this.technicalLeader = technicalLeader;
+        this.productManager = productManager;
+    }
+
     CallProcess(Fresher fresher) {
         this.fresher = fresher;
         CallCenter callCenter = CallCenter.getInstance();
@@ -26,31 +32,26 @@ public class CallProcess implements Runnable {
     public void run() {
         System.out.println("receive a call ");
         int difficulty = (int) (Math.random() * 100);
+        handleInComingCall(difficulty);
+    }
+
+    void handleInComingCall(int difficulty) {
         try {
             fresher.answerCall(difficulty);
         } catch (CanNotHandleCallException e) {
             passToTechLeader(difficulty);
         }
-
     }
 
     private void passToTechLeader(int difficulty) {
         try {
-            waitingFroTechLeaderFree();
-            System.out.println("TechLeader is Handling the Call");
-            technicalLeader.answerCall(difficulty);
+            if (technicalLeader.isFree()) {
+                System.out.println("TechLeader is Handling the Call");
+                technicalLeader.answerCall(difficulty);
+            }
+            throw new CanNotHandleCallException();
         } catch (CanNotHandleCallException ex) {
             passToProductManager(difficulty);
-        }
-    }
-
-    private void waitingFroTechLeaderFree() {
-        while (!technicalLeader.isFree()) {
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
         }
     }
 
