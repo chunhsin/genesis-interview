@@ -46,7 +46,8 @@ otherwise will waiting until ProductManager is free to answer the call.
 ### Constants
 
 1. Define the difficulty each role can handle.
-1. Define the problem solve time for each role. (easily for testing).  
+1. Define the problem solve time for each role. (easily for testing).
+1. Design a `handleInComingCall` method is for testing the different call scenario with single thread.  
 
 ### Employee
 
