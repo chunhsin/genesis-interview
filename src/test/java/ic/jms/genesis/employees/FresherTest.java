@@ -4,6 +4,8 @@ import ic.jms.genesis.Constants;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static ic.jms.genesis.Constants.*;
+
 /**
  * @author jamesliao
  * @since 2019-07-24
@@ -15,7 +17,7 @@ public class FresherTest {
         // given
         Fresher fresher = new Fresher(1);
         // when
-        fresher.answerCall(Constants.FRESHER_CAN_HANDLE_DIFFICULTY - 1);
+        fresher.answerCall(FRESHER_CAN_HANDLE_DIFFICULTY);
         // then
         Assert.assertTrue(fresher.isFree());
     }
@@ -25,7 +27,7 @@ public class FresherTest {
         // given
         Fresher fresher = new Fresher(1);
         // when
-        fresher.answerCall(Constants.FRESHER_CAN_HANDLE_DIFFICULTY + 1);
+        fresher.answerCall(FRESHER_CAN_HANDLE_DIFFICULTY + 1);
     }
 
 }

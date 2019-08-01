@@ -19,12 +19,12 @@ public class CallCenter {
     private AtomicInteger receiveCallCount = new AtomicInteger(0);
     private ConcurrentLinkedQueue<Fresher> fresherList = new ConcurrentLinkedQueue<>();
     private TechnicalLeader technicalLeader;
-    private ProductManager productManager = new ProductManager(maxFreshers + 2);
+    private ProductManager productManager;
     private ExecutorService executor;
     private static CallCenter callCenter;
 
-    public static CallCenter getInstance(){
-        if(callCenter == null )
+    public static CallCenter getInstance() {
+        if (callCenter == null)
             callCenter = new CallCenter();
         return callCenter;
     }
@@ -52,8 +52,7 @@ public class CallCenter {
             if (fresher.isFree())
                 return Optional.of(fresher);
         }
-        Thread.sleep(100);
-
+        Thread.sleep(50);
         return Optional.empty();
     }
 
@@ -70,6 +69,7 @@ public class CallCenter {
             fresherList.add(new Fresher(i));
         }
         technicalLeader = new TechnicalLeader(maxFreshers + 1);
+        productManager = new ProductManager(maxFreshers + 2);
     }
 
 }

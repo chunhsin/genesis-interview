@@ -3,6 +3,7 @@ package ic.jms.genesis.employees;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static ic.jms.genesis.Constants.TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY;
 import static org.junit.Assert.*;
 
 /**
@@ -15,7 +16,7 @@ public class ProductManagerTest {
         // given
         Employee employee = new ProductManager(1);
         // when
-        employee.answerCall(101);
+        employee.answerCall(TECHNICAL_LEADER_CAN_HANDLE_DIFFICULTY+1);
         // then
         Assert.assertTrue(employee.isFree());
     }

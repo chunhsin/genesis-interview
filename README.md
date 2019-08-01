@@ -24,9 +24,22 @@ What we would like to see:
 1. Document your code.
 
 
-## Solutions
+## Structures
 
 ### CallCenter
 
 1. Create a single CallCenter instance with one TechnicalLeader and ProductManager.
+1. Create a fix thread pool to handle call async.
+1. Init all Fresher here, and find free Fresher to answer call.
+
+### CallProcess
+
+1. Each CallProcess has at least one fresher to handle.
+1. If problem was to difficult to current fresher, then fresher will throw a `CanNotHandleCallException`
+1. If TechnicalLeader is free, then TechnicalLeader will handle the call,
+otherwise will waiting until ProductManager is free to answer the call.
+1. If TechnicalLeader is free, but this problem was still too hard for TechnicalLeader to solve, then the TechnicalLeader will also throw a `CanNotHandleCallException`
+, then the call will waiting until ProductManager is free to answer it.
+1. If TechnicalLeader is not free, the call will waiting until ProductManager is free to answer it.
+
 
