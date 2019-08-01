@@ -31,6 +31,7 @@ What we would like to see:
 1. Create a single CallCenter instance with one TechnicalLeader and ProductManager.
 1. Create a fix thread pool to handle call async.
 1. Init all Fresher here, and find free Fresher to answer call.
+1. When receive a call, allocate a free fresher and start new thread to run CallProcess.
 
 ### CallProcess
 
@@ -42,4 +43,34 @@ otherwise will waiting until ProductManager is free to answer the call.
 , then the call will waiting until ProductManager is free to answer it.
 1. If TechnicalLeader is not free, the call will waiting until ProductManager is free to answer it.
 
+### Constants
 
+1. Define the difficulty each role can handle.
+1. Define the problem solve time for each role. (easily for testing).  
+
+### Employee
+
+1. An interface define the employee's behavior, status, such as `answerCall`, `isFree`, etc.
+
+### BasicEmployee
+
+1. A basic implement of employee, Fresher, TechnicalLeader, ProductManager were all extends it.
+1. Implement a basic answer call flow.
+1. Using `AtomicBoolean` to ensure Thread-Safe.
+
+### Fresher
+
+1. Implement `canHandleCall` and `trySolveProblem` according the params in `Constants`.
+1. If fresher can't handle the call, it will throw a `CanNotHandleCallException`.
+
+### TechnicalLeader
+
+1. Basically same with fresher, besides the params in `Constants`.
+
+
+### ProductManager
+
+1. Basically same with fresher, besides the params in `Constants`.
+
+
+1. implement `canHandleCall` and `trySolveProblem` according the params in Constants.
